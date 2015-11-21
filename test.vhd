@@ -23,7 +23,7 @@ architecture behavior of test is
     signal clk, load: std_logic;
 begin
 
-	load <= '1', '0' after 700 ns;
+	load <= '1', '0' after 750 ns;
 
     input_vector <=
 
@@ -39,9 +39,9 @@ begin
 	clk_pr: process
 	begin
 		clk <= '1';
-		wait for 100 ns;
+		wait for 50 ns;
 		clk <= '0';
-		wait for 100 ns;
+		wait for 50 ns;
 	end process;
 
     scheme: synchronius_device port map(input_vector=>input_vector, output_vector=>output_vector, clk => clk, load => load);

@@ -6,7 +6,7 @@ use IEEE.std_logic_1164.all;
 use IEEE.std_logic_textio.all;
 
 entity synchronius_device is
-	generic(n: natural=7);
+	generic(n: natural:=7);
 	port(
 			input_vector: in std_logic_vector(15 downto 0);
 			output_vector: out std_logic_vector(1 downto 0);
@@ -65,8 +65,6 @@ begin
 		variable flag: std_logic;
 		variable result: std_logic_vector(1 downto 0);
 		variable data: std_logic_vector((2**n)-1 downto 0);
-
-		variable debug: line;
 		begin 
 			if(clk'event and clk = '1') then
 				if(load = '0') then
@@ -79,23 +77,15 @@ begin
 						start_vector(0) := '1';
 						temp_vector := start_vector;
 						end_vector := reverse_bits(start_vector);
-						write(debug, string'(" start_vector: "));
-						write(debug, start_vector);
-						write(debug, string'(" end_vector: "));
-						write(debug, end_vector);
 						flag := data(to_integer(unsigned(temp_vector)));
 						gen_set: while temp_vector /= end_vector loop
 							temp_vector := generate_next_set(temp_vector);
-							write(debug, string'(" temp_vector: "));
-							write(debug, temp_vector);
 							if flag /= data(to_integer(unsigned(temp_vector))) then 
-								assert(false) report "exiting" severity warning;
 								result := "10";
 								exit start_set;
 							end if;
 						end loop;
 					end loop;
-					assert(false) report debug.all severity warning;
 					output_vector <= result;
 				else
 					data := to_stdlogicvector(to_bitvector(data) sll 16);

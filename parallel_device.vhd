@@ -74,23 +74,15 @@ begin
 				start_vector(0) := '1';
 				temp_vector := start_vector;
 				end_vector := reverse_bits(start_vector);
-				write(debug, string'(" start_vector: "));
-				write(debug, start_vector);
-				write(debug, string'(" end_vector: "));
-				write(debug, end_vector);
 				flag := input_vector(to_integer(unsigned(temp_vector)));
 				gen_set: while temp_vector /= end_vector loop
 					temp_vector := generate_next_set(temp_vector);
-					write(debug, string'(" temp_vector: "));
-					write(debug, temp_vector);
 					if flag /= input_vector(to_integer(unsigned(temp_vector))) then 
-						assert(false) report "exiting" severity warning;
 						result := "10";
 						exit start_set;
 					end if;
 				end loop;
 			end loop;
-			assert(false) report debug.all severity warning;
 			output_vector <= result;
 	end process main;
 end architecture;
