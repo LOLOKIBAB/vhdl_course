@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 use IEEE.std_logic_1164.all;  
 use IEEE.std_logic_textio.all;
 
-entity course is
+entity parallel_device is
 	generic(n: natural:=4);
 	port(
 			input_vector: in std_logic_vector((2**N)-1 downto 0);
@@ -13,7 +13,7 @@ entity course is
 		);
 end entity;
 
-architecture behavior of course is
+architecture behavior of parallel_device is
 
 	function reverse_bits(bits: std_logic_vector) return std_logic_vector is
 		variable result: std_logic_vector(bits'range);
