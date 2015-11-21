@@ -19,11 +19,8 @@ architecture behavior of synchronius_device is
 
 begin
 	main: process(clk)  
-		variable start_vector: std_logic_vector(n-1 downto 0);
 		variable temp_vector: std_logic_vector(n-1 downto 0);
 		variable counter: natural := 0;
-		variable index: natural;
-		variable end_vector: std_logic_vector(n-1 downto 0);
 		variable flags: std_logic_vector(n-1 downto 1);
 		variable result: std_logic_vector(1 downto 0) := "11";
 		variable data: std_logic_vector((2**N)-1 downto 0);

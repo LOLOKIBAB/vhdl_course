@@ -31,7 +31,7 @@ class Module(object):
         end entity;
 
         architecture behavior of test is
-            component course
+            component parallel_device
                 generic(n: natural := test_n);
                 port(
                         input_vector: in std_logic_vector((2**n)-1 downto 0);
@@ -47,7 +47,7 @@ class Module(object):
 {input_vectors}
 
 
-            scheme: course port map(input_vector=>input_vector, output_vector=>output_vector);
+            scheme: parallel_device port map(input_vector=>input_vector, output_vector=>output_vector);
         end architecture;
         """
         time = 0
